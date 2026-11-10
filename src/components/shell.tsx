@@ -12,7 +12,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Component, createContext, useContext, useEffect, useMemo, useRef, useState } from "react"
 
-const PhaseContext = createContext<"boot" | "intro" | "live">("boot")
+const PhaseContext = createContext<"boot" | "intro" | "mark" | "live">("boot")
 export function usePhase() {
   return useContext(PhaseContext)
 }
@@ -105,7 +105,7 @@ function Corner() {
 function Frame({ children }: { children: React.ReactNode }) {
   const path = usePathname()
   const { profile, owner, setLook } = useStudio()
-  const [phase, setPhase] = useState<"boot" | "intro" | "live">("boot")
+  const [phase, setPhase] = useState<"boot" | "intro" | "mark" | "live">("boot")
   const [reduce, setReduce] = useState(false)
   const [muted, setMuteState] = useState(false)
   useEffect(() => {
@@ -144,7 +144,42 @@ function Frame({ children }: { children: React.ReactNode }) {
     setPhase("live")
   }
 
+  useEffect(() => {
+    if (phase !== "mark" || reduce) return
+    const timer = window.setTimeout(finish, 1900)
+    return () => window.clearTimeout(timer)
+  }, [phase, reduce])
+
   const nav = [...links, ...(profile ? [{ href: "/tuffie", label: "Den" }, { href: "/shop", label: "Shop" }, { href: "/inbox", label: "Inbox" }] : []), ...(owner ? [{ href: "/desk", label: "Desk" }] : [])]
+
+  if (phase !== "live") {
+    return (
+      <PhaseContext.Provider value={phase}>
+        <div className="fixed inset-0 z-50 grid place-items-center bg-[#070605] text-paper">
+          {phase === "intro" && !reduce ? (
+            <Boundary fallback={<button className="plate px-4 py-3" onClick={() => setPhase("mark")}>Enter</button>}>
+              <div className="absolute inset-0">
+                <CrestScene mode="intro" onDone={() => setPhase("mark")} />
+              </div>
+            </Boundary>
+          ) : (
+            <div className="w-[min(860px,90vw)]">
+              <LogoMark live={!reduce && phase === "mark"} />
+            </div>
+          )}
+          {phase === "intro" ? (
+            <button className="plate absolute top-6 right-6 z-10 px-4 py-2 text-sm" onClick={() => setPhase("mark")}>
+              Skip
+            </button>
+          ) : (
+            <button className="plate absolute top-6 right-6 z-10 px-4 py-2 text-sm" onClick={finish}>
+              Enter
+            </button>
+          )}
+        </div>
+      </PhaseContext.Provider>
+    )
+  }
 
   return (
     <PhaseContext.Provider value={phase}>
@@ -192,26 +227,6 @@ function Frame({ children }: { children: React.ReactNode }) {
           <span>YouTube — account not opened</span>
         </footer>
         <Corner />
-        {phase !== "live" ? (
-          <div className="fixed inset-0 z-50 grid place-items-center bg-[#070605] text-paper">
-            {phase === "intro" && !reduce ? (
-              <Boundary fallback={<button className="plate px-4 py-3" onClick={finish}>Enter</button>}>
-                <div className="absolute inset-0">
-                  <CrestScene mode="intro" onDone={finish} />
-                </div>
-              </Boundary>
-            ) : (
-              <div className="w-[min(860px,90vw)]">
-                <LogoMark live={false} />
-              </div>
-            )}
-            {phase === "intro" ? (
-              <button className="plate absolute top-6 right-6 z-10 px-4 py-2 text-sm" onClick={finish}>
-                Skip
-              </button>
-            ) : null}
-          </div>
-        ) : null}
       </div>
     </PhaseContext.Provider>
   )

@@ -23,7 +23,9 @@ export type Entry = {
   repo: string | null
   logo?: string
   still?: string
+  stills?: string[]
   clip?: string
+  story?: string[]
 }
 
 export const entries: Entry[] = [
@@ -77,6 +79,15 @@ export const entries: Entry[] = [
     standout: "Fox's Mark. Light, light, heavy. The neck comes away.",
     logo: "/media/unremembered-logo.jpg",
     still: "/media/unremembered-title.png",
+    stills: ["/media/unremembered-combat.png"],
+    clip: "/media/unremembered-highlight.mp4",
+    story: [
+      "Ash washes up with no memory. The first act is the home country: Reedwake, Hollowroot, Lantern Vale, Stillbough, Coppermere, Thornwick, and the Brine Flats. He survives, builds Hollowroot, and learns to fight from Ochre, from the wizard Mordecai, and from the books. Eren is with him. The first name that comes back is Aldric.",
+      "Before the shore he belonged to a resistance cell. They followed the Order through transport lists, payments, and seals, looking for people who had gone missing. In a prison archive he found the proof: the missing were still alive when the Order wiped their names.",
+      "The campaign goes on with the friends who forgot too. In the rainforest he finds three of the cell. Tamsin Reed read the maps. Bram Hollis was learning the forge. Sister Wynn leaked the church registers. None of them remembers all of it. When two people who were there tell their half of a memory at the same fire, that memory plays for both. The first shared one is What I Told Them.",
+      "They look for more survivors. Corvin, the cell's coder, has been framed in Vesperhaven. Nell Marrow is the prisoner Ash freed, and she remembers the rescue he has lost. They meet at the inn called The Copper Gull. That night they decide to build a guild: The Unremembered, Guild of the Forgotten Ones.",
+      "Hearthward, outside Vesperhaven, becomes the new home. Hollowroot stays. The forge moves. At a round table they plan the work against the Order. The plan then runs four operations, through the wetlands, the sands, and the winter country, and ends above the clouds at the Crown of Glass. The last choice is Remember, Forget, Become, or the Eighth Time.",
+    ],
     focus: [
       { label: "World", value: 78 },
       { label: "Melee", value: 86 },

@@ -29,6 +29,16 @@ export function GameView({ id }: { id: string }) {
       </header>
       <Gate texture={entry.texture} accent={entry.accent} video={media.video || entry.clip} still={media.still || entry.still} label="Trailer" />
       <p className="max-w-3xl text-lg leading-relaxed">{entry.summary}</p>
+      {entry.story?.length ? (
+        <section className="max-w-3xl space-y-4">
+          <h2 className="text-2xl">Story</h2>
+          {entry.story.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className="leading-relaxed text-paper/90">
+              {paragraph}
+            </p>
+          ))}
+        </section>
+      ) : null}
       <p className="text-gold">{entry.standout}</p>
       <div className="grid gap-3 md:grid-cols-4">
         {entry.focus.map((item) => (
@@ -66,8 +76,8 @@ export function GameView({ id }: { id: string }) {
         ))}
       </section>
       <section className="grid gap-3 md:grid-cols-3">
-        {[1, 2, 3].map((slot) => (
-          <Gate key={slot} texture={entry.texture} accent={entry.accent} label={`Still ${slot}`} />
+        {[0, 1, 2].map((slot) => (
+          <Gate key={slot} texture={entry.texture} accent={entry.accent} still={entry.stills?.[slot]} label={entry.stills?.[slot] ? "From the take" : `Still ${slot + 1}`} />
         ))}
       </section>
       <div className="flex flex-wrap gap-3">
