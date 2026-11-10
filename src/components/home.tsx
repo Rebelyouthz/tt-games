@@ -57,7 +57,7 @@ export function HomeClient() {
           <Gate texture="liquid" accent="#e4b15a" label="Waterdrop Survivor" />
           <span className="block p-4">
             <span className="display text-2xl">Waterdrop Survivor</span>
-            <span className="mt-2 block text-sm text-muted">A series. Core, Space, Remnant, and the builds that are their own.</span>
+            <span className="mt-2 block text-sm text-muted">A series. Pixi and the Space folder are one game.</span>
           </span>
         </Plate>
       </section>

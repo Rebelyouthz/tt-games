@@ -337,7 +337,7 @@ export function charmTotal(charms: Partial<Stats>) {
 }
 
 export function dailyCard(today: string) {
-  const games = ["hnt", "unremembered", "core", "space", "remnant", "v4", "sandbox"]
+  const games = ["hnt", "unremembered", "core", "remnant", "v4", "sandbox"]
   const cares = ["feed", "pet", "train"] as const
   const socials = ["wall", "wishlist"] as const
   let hash = 0

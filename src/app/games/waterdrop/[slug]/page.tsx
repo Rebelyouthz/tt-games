@@ -1,10 +1,10 @@
 import { editions, getEntry } from "@/data/catalog";
 import { GameView } from "@/components/game-view";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export function generateStaticParams() {
-  return editions().map((entry) => ({ slug: entry.id }));
+  return [...editions().map((entry) => ({ slug: entry.id })), { slug: "space" }];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === "space") redirect("/games/waterdrop/core");
   const entry = getEntry(slug);
   if (!entry?.series) notFound();
   return <GameView id={entry.id} />;

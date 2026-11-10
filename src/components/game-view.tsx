@@ -22,10 +22,12 @@ export function GameView({ id }: { id: string }) {
     <article className="space-y-8" style={{ ["--accent" as string]: entry.accent }}>
       <header className="space-y-3">
         <p className="text-xs tracking-[0.18em] text-gold uppercase">{entry.kicker}</p>
-        <h1 className="text-5xl">{entry.title}</h1>
+        <h1 className="text-5xl">
+          {entry.logo ? <img src={entry.logo} alt={entry.title} className="max-h-72 w-full max-w-3xl object-contain object-left" /> : entry.title}
+        </h1>
         <Status status={entry.status} label={entry.statusLabel} />
       </header>
-      <Gate texture={entry.texture} accent={entry.accent} video={media.video} still={media.still} label="Trailer" />
+      <Gate texture={entry.texture} accent={entry.accent} video={media.video || entry.clip} still={media.still || entry.still} label="Trailer" />
       <p className="max-w-3xl text-lg leading-relaxed">{entry.summary}</p>
       <p className="text-gold">{entry.standout}</p>
       <div className="grid gap-3 md:grid-cols-4">

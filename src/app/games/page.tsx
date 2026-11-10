@@ -24,7 +24,7 @@ export default function Page() {
         <Plate href="/games/waterdrop">
           <Status status="playable" label="Series" />
           <span className="display mt-2 block text-3xl">Waterdrop Survivor</span>
-          <span className="mt-2 block text-sm text-muted">Core, Space, Remnant, and the other builds that are their own.</span>
+          <span className="mt-2 block text-sm text-muted">Pixi and the Space folder are one game. Remnant stays its own page.</span>
         </Plate>
       </div>
       <p className="text-sm text-muted">

@@ -21,6 +21,9 @@ export type Entry = {
   focus: { label: string; value: number }[]
   facts: { label: string; value: string }[]
   repo: string | null
+  logo?: string
+  still?: string
+  clip?: string
 }
 
 export const entries: Entry[] = [
@@ -70,8 +73,10 @@ export const entries: Entry[] = [
     texture: "crt",
     series: null,
     summary:
-      "A small open-world hack-and-slash ARPG. Pixel figures in a 2.5D world, built in Godot 4.7. The studio mark lives in this repo. The game itself stays private until a trailer is cut.",
-    standout: "One world, melee, and the studio ident that this site redraws.",
+      "Memories of the Forgotten. The title on this machine is a night shore: a moon, lanterns in a tree, and the pixel word UNREMEMBERED. Combat is light and heavy cuts. Fox's Mark is light, light, heavy: two short cuts, then a flat middle cut. A level cut at the neck takes the head off. Fox's Mark at the neck always does. A level cut above the eyes takes the top of the skull instead.",
+    standout: "Fox's Mark. Light, light, heavy. The neck comes away.",
+    logo: "/media/unremembered-logo.jpg",
+    still: "/media/unremembered-title.png",
     focus: [
       { label: "World", value: 78 },
       { label: "Melee", value: 86 },
@@ -79,30 +84,31 @@ export const entries: Entry[] = [
       { label: "Story", value: 70 },
     ],
     facts: [
-      { label: "Repo", value: "Rebelyouthz/unremembered" },
-      { label: "Last commit", value: "4 Nov 2026" },
-      { label: "Visibility", value: "Private" },
-      { label: "Logo", value: "Redrawn here as vectors" },
+      { label: "On this machine", value: "Conspiracy Of everything" },
+      { label: "Move", value: "WASD, left click light, right click heavy" },
+      { label: "Fox's Mark", value: "Light, light, heavy, at the neck" },
+      { label: "Beheading", value: "A level neck cut. Fox's Mark always." },
     ],
     repo: null,
   },
   {
     id: "core",
-    title: "Core",
-    kicker: "Waterdrop Survivor",
+    title: "Waterdrop Survivor",
+    kicker: "Pixi, and the Space folder",
     genre: "Survivor",
-    engine: "React and Canvas",
+    engine: "React and PixiJS",
     language: "JavaScript",
-    method: "Browser, 2D canvas",
+    method: "Browser, WebGL",
     status: "playable",
-    statusLabel: "Public snapshot",
+    statusLabel: "Same game, two folders",
     updated: "2026-10-02",
     accent: "#e4b15a",
     texture: "liquid",
     series: "waterdrop",
+    still: "/media/waterdrop-forms.png",
     summary:
-      "The public browser build from 2 October 2026. Six weapons, seven enemies, two bosses, a camp, and a skill tree. Gold and water. Earlier canvas repos are passes of this same game, not extra editions.",
-    standout: "A full browser run: weapons, camp, and two bosses.",
+      "One game. The playable build is Waterdrop Pixi at C:\\Users\\timmi\\WaterdropPixi\\wd2d2Pixi-main, last written 2 October 2026. The folder named Waterdrop Survivor (Space edition) holds an older copy of that same Pixi game, from 18 August 2026, plus extra fonts and sounds. The menu that opened here asks you to choose a form: Pure Drop, Emberkin, Voidwalker, Runebearer, Eye-bound, Spectre. A.I.D.A. awakens. The first weapon is a rib snapped off the station.",
+    standout: "Pixi and the Space edition folder are the same game. This is the page for both.",
     focus: [
       { label: "Weapons", value: 76 },
       { label: "Camp", value: 82 },
@@ -110,43 +116,12 @@ export const entries: Entry[] = [
       { label: "Bosses", value: 64 },
     ],
     facts: [
-      { label: "Repo", value: "waterdroppixi-2026-10-02" },
-      { label: "Last commit", value: "2 Oct 2026" },
-      { label: "Weapons", value: "6, plus starters in the data" },
-      { label: "Enemies", value: "7, and 2 bosses" },
+      { label: "Playable folder", value: "WaterdropPixi\\wd2d2Pixi-main" },
+      { label: "Older copy", value: "OneDrive\\Waterdrop Survivor (Space edition)" },
+      { label: "Opened here", value: "Choose your form" },
+      { label: "First weapon", value: "A snapped station rib" },
     ],
     repo: "https://github.com/Rebelyouthz/waterdroppixi-2026-10-02",
-  },
-  {
-    id: "space",
-    title: "Space Edition",
-    kicker: "Waterdrop Survivor",
-    genre: "Survivor",
-    engine: "Not matched",
-    language: "Not matched",
-    method: "Not matched to a repository",
-    status: "named",
-    statusLabel: "Named, no source yet",
-    updated: null,
-    accent: "#9eb6d6",
-    texture: "stars",
-    series: "waterdrop",
-    summary:
-      "Space Edition is a named part of the series. The Waterdrop repositories were read. None of them is this edition. The page stays up so the cold accent, the trailer gate, and the roadmap have a home.",
-    standout: "Cold light and stars, in the same liquid frame as the rest of the series.",
-    focus: [
-      { label: "Stars", value: 48 },
-      { label: "Liquid", value: 70 },
-      { label: "Source", value: 8 },
-      { label: "Trailer", value: 12 },
-    ],
-    facts: [
-      { label: "Repo", value: "No match" },
-      { label: "Language", value: "Not matched" },
-      { label: "Method", value: "Not matched" },
-      { label: "Status", value: "Named edition" },
-    ],
-    repo: null,
   },
   {
     id: "remnant",
@@ -244,7 +219,8 @@ export const entries: Entry[] = [
 ]
 
 export const lineage = [
-  "Emegent-waterdrop-2d, wd2d, wd2d2, wd2d2New, and wd2d2Pixi are earlier or parallel React and canvas passes of the same 2D game. They sit under Core.",
+  "Waterdrop Pixi and the folder named Waterdrop Survivor (Space edition) are the same game. The Space folder is the older copy. Both live on the Waterdrop Survivor page.",
+  "Emegent-waterdrop-2d, wd2d, wd2d2, wd2d2New, and wd2d2Pixi are earlier or parallel passes of that same game.",
   "waterdroppixi-september is a snapshot archive. Its active code is that same canvas line.",
   "Small-watersrop-survivor is a zip of the same frontend and backend shape, not a separate edition.",
   "ws is an empty repository. WaterdropSurvivorEmergent is a readme and no game.",
@@ -308,12 +284,12 @@ export const roadmapSeed: RoadmapRow[] = [
   },
   {
     id: "space-named",
-    gameId: "space",
-    date: null,
-    title: "Space Edition is named",
-    status: "named" as const,
-    detail: "No repository read as Space Edition. Language and method stay blank on purpose.",
-    next: "Match a repo when one actually is this edition, or start it.",
+    gameId: "core",
+    date: "2026-08-18",
+    title: "The Space folder is the same Pixi game",
+    status: "playable" as const,
+    detail: "C:\\Users\\timmi\\OneDrive\\Waterdrop Survivor (Space edition)\\WaterdropPixi is an older copy of Waterdrop Pixi, not a second game.",
+    next: "Keep one page. The October Pixi folder is the newer build.",
   },
   {
     id: "remnant-named",
