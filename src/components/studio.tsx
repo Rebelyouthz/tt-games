@@ -59,6 +59,7 @@ type StudioValue = {
   feed: (bag?: boolean) => string
   cuddle: () => string
   train: (tree: "brawl" | "guard" | "care") => string
+  bankRun: (xp: number) => string
   spendStat: (key: StatKey) => void
   spendSkill: (id: string) => string
   buyKibble: (kind: "weapon" | "armor" | "food" | "hearty", id?: string) => string
@@ -365,6 +366,18 @@ export function StudioProvider({ children }: { children: React.ReactNode }) {
           return { root: put(current, next) }
         })
         return ""
+      },
+      bankRun: (xp) => {
+        if (!pet || pet.stage === "egg") return "The egg stays in the shell."
+        const gain = Math.max(0, Math.min(40, Math.round(xp)))
+        commit((current) => {
+          const seat = requireProfile(current)
+          const currentPet = seat ? activePet(seat) : null
+          if (!seat || !currentPet || currentPet.stage === "egg") return null
+          const next = addXp(seat, gain, currentPet.id).profile
+          return { root: put(current, next) }
+        })
+        return gain ? `${gain} XP from the run.` : ""
       },
       spendStat: (key) =>
         commit((current) => {

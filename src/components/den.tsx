@@ -196,6 +196,7 @@ export function Den() {
             ))}
           </div>
           <div className="mt-4 flex gap-3">
+            <Plate href="/tuffie/run">Run</Plate>
             <Plate href="/tuffie/arena">Arena</Plate>
             <Plate href="/tuffie/breed">Breed</Plate>
           </div>

@@ -39,9 +39,12 @@ export function HomeClient() {
         <div className="relative z-10 mx-auto w-[min(920px,94%)] pt-6">
           <LogoMark live />
         </div>
-        <p className="relative z-10 mt-2 text-center text-sm tracking-[0.22em] text-muted uppercase">TimmieTooth Games</p>
+        <div className="scrim relative z-10 mx-auto mt-6 max-w-xl px-4 py-5 text-center">
+          <p className="text-sm tracking-[0.22em] text-gold uppercase">TimmieTooth Games</p>
+          <p className="mt-3 text-lg leading-relaxed">A small studio shelf. The mark stays in the background. The words stay in front.</p>
+        </div>
       </section>
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="reveal grid gap-4 md:grid-cols-3">
         {gates.map((entry) =>
           entry ? (
             <Plate key={entry.id} href={`/games/${entry.id}`} className="p-0">

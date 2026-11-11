@@ -34,10 +34,12 @@
 
 body {
   background:
-    radial-gradient(1200px 500px at 50% -10%, rgba(228, 177, 90, 0.08), transparent 55%),
+    radial-gradient(900px 420px at 50% -12%, rgba(228, 177, 90, 0.07), transparent 60%),
     var(--ink);
   color: var(--paper);
   font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.55;
 }
 
 h1, h2, h3, .display {
@@ -142,6 +144,19 @@ a { color: inherit; }
   100% { transform: translateY(0) scale(1); }
 }
 
+.reveal {
+  animation: rise 0.7s ease both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.scrim {
+  background: linear-gradient(180deg, rgba(9, 8, 7, 0.15), rgba(9, 8, 7, 0.78) 78%, var(--ink));
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .drip, .bob, .prime-bob, .egg-shake, .jump, .sheen { animation: none !important; }
+  .drip, .bob, .prime-bob, .egg-shake, .jump, .sheen, .reveal { animation: none !important; }
 }

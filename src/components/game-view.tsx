@@ -2,6 +2,7 @@
 
 import { getEntry, mergeRoadmap, prettyDate, type Entry } from "@/data/catalog"
 import { useStudio } from "@/components/studio"
+import { PlaySheet } from "@/components/play-sheet"
 import { Gate, Plate, Status } from "@/components/ui"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -40,6 +41,7 @@ export function GameView({ id }: { id: string }) {
         </section>
       ) : null}
       <p className="text-gold">{entry.standout}</p>
+      <PlaySheet id={entry.id} accent={entry.accent} />
       <div className="grid gap-3 md:grid-cols-4">
         {entry.focus.map((item) => (
           <div key={item.label} className="plate p-3">
