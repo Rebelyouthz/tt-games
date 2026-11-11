@@ -51,7 +51,7 @@ export function PlaySheet({ id, accent }: { id: string; accent: string }) {
       <section className="plate p-4">
         <h2 className="text-2xl">How it plays</h2>
         <p className="mt-3 max-w-3xl leading-relaxed">
-          The copies on this machine were not the current HnT build, so this page does not turn that code into meters.
+          HnT stays without meters. The copies opened on this machine were not the current build, and the bad take is not on this page.
         </p>
       </section>
     )

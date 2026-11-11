@@ -29,6 +29,8 @@ class Boundary extends Component<{ children: React.ReactNode; fallback: React.Re
 
 const links = [
   { href: "/games", label: "Games" },
+  { href: "/teaser", label: "Teaser" },
+  { href: "/apps", label: "Apps" },
   { href: "/roadmap", label: "Roadmap" },
   { href: "/studio", label: "Studio" },
   { href: "/wall", label: "Wall" },
@@ -95,7 +97,7 @@ function Corner() {
 
   if (!profile || !pet) return null
   return (
-    <Link href="/tuffie" className={`fixed bottom-4 right-4 z-30 w-28 ${hop ? "jump" : ""}`} style={{ transform: `rotate(${look * 16}deg)` }} onClick={() => playClick()}>
+    <Link href="/tuffie" className={`fixed bottom-4 right-4 z-30 w-28 ${hop || profile?.look?.pose === "hop" ? "jump" : ""}`} style={{ transform: `rotate(${look * 16 + (profile?.look?.pose === "lean" ? -10 : 0)}deg)` }} onClick={() => playClick()}>
       {line ? <span className="plate mb-2 block px-2 py-1 text-center text-xs">{line}</span> : null}
       <TuffieSprite pet={pet} sleeping={idle} />
     </Link>

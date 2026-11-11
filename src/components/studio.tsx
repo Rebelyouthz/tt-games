@@ -1,6 +1,7 @@
 "use client"
 
 import { armors, gameIds, hats, eyeExtras, productBySku, weapons } from "@/data/catalog"
+import { defaultLook } from "@/data/looks"
 import { ownerEmail } from "@/lib/supabase"
 import {
   activePet,
@@ -24,7 +25,7 @@ import {
   titleRank,
   tryHatch,
 } from "@/lib/model"
-import type { Pet, Profile, Root, StatKey } from "@/lib/types"
+import type { Look, Pet, Profile, Root, StatKey } from "@/lib/types"
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 
 type CombatReward = {
@@ -75,6 +76,7 @@ type StudioValue = {
   offerBreed: (toId: string) => string
   acceptBreed: (offerId: string) => Promise<string>
   breedPebble: () => Promise<string>
+  equipLook: (look: Look) => void
   readInbox: (id: string) => void
   deskRoad: (row: Root["desk"]["roadmap"][number]) => void
   deskMedia: (id: string, patch: { video?: string; still?: string; build?: string }) => void
@@ -115,6 +117,7 @@ function repair(parsed: Root): Root {
       daily: profile.daily || freshDaily(stockholmDate()),
       fulfilled: profile.fulfilled || [],
       freeRematch: profile.freeRematch || null,
+      look: profile.look || defaultLook,
     }
   }
   return {
@@ -177,6 +180,7 @@ export function createSeat(root: Root, name: string, invite: string | null, now:
     daily: freshDaily(today),
     bankedXp: 0,
     rerolls: 0,
+    look: defaultLook,
     freeRematch: null,
   }
   const redeems = knownInvite ? [...root.redeems, { code: invite as string, redeemerId: seatId, paid: false }] : root.redeems
@@ -659,6 +663,12 @@ export function StudioProvider({ children }: { children: React.ReactNode }) {
         commit((live, now, today) => placeChildren(live, seat.id, null, data, now, today, null))
         return ""
       },
+      equipLook: (nextLook) =>
+        commit((current) => {
+          const seat = requireProfile(current)
+          if (!seat) return null
+          return { root: put(current, { ...seat, look: nextLook }) }
+        }),
       readInbox: (id) =>
         commit((current) => {
           const seat = requireProfile(current)

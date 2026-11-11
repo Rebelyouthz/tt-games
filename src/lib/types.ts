@@ -73,6 +73,14 @@ export type InboxNote = {
   read: boolean
 }
 
+export type Look = {
+  frame: "line" | "gold" | "ember" | "twin"
+  banner: "ink" | "gold" | "ember" | "dusk"
+  flair: "none" | "drip" | "spark"
+  pose: "rest" | "lean" | "hop"
+  name: "studio" | "tracked" | "gold"
+}
+
 export type Profile = {
   id: string
   name: string
@@ -109,6 +117,7 @@ export type Profile = {
   bankedXp: number
   rerolls: number
   freeRematch: string | null
+  look: Look
 }
 
 export type WallPost = {

@@ -42,7 +42,9 @@ export function LogoMark({ className, live = true }: { className?: string; live?
     <svg className={className} viewBox="0 0 1000 640" role="img" aria-label="TT Games">
       <defs>
         <linearGradient id={`${uid}-gold`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fff4d2" />
+          <stop offset="0" stopColor="#fff4d2">
+            {live ? <animate attributeName="offset" values="0;0.35;0" dur="3.6s" repeatCount="indefinite" /> : null}
+          </stop>
           <stop offset="0.45" stopColor="#e4b15a" />
           <stop offset="1" stopColor="#8a5a1e" />
         </linearGradient>
